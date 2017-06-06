@@ -30,13 +30,13 @@ ActiveRecord::Schema.define(version: 20170605181324) do
 
   create_table "credit_cards", force: :cascade do |t|
     t.string   "number"
-    t.string   "type"
-    t.date     "exp_date"
+    t.string   "credit_card_type"
+    t.string   "exp_date"
     t.integer  "billing_day"
     t.string   "status"
     t.date     "closed_date"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.integer  "company_id"
     t.index ["company_id"], name: "index_credit_cards_on_company_id", using: :btree
   end

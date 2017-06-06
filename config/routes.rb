@@ -3,6 +3,16 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
+  resources :credit_cards, only: [:index, :new, :create, :edit, :update] do
+    member do
+      patch 'close'
+      patch 'activate'
+      patch 'deactivate'
+    end
+  end
+
+
   resources :users, only: [:create, :new, :index, :show, :edit, :update]
+
 
 end
