@@ -1,0 +1,16 @@
+
+
+<% if policy(User).index? %>
+
+<% @users.each do |user| %>
+    <p>
+    <%= user.first_name %>
+    <%= user.last_name %>
+    <%= user.email %>
+    <%= user.status %></p>
+<% end %>
+
+<% end %>
+
+
+
