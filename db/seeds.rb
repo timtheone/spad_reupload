@@ -85,9 +85,10 @@ user_seed = [
 credit_card_seed = [
   {
   number: "1111 2222 3333 4444",
-  type: "Visa",
+  credit_card_type: "Visa",
   status: "active",
-  company_id: 1
+  company_id: 1,
+  billing_day: 20
   }
 ]
 
