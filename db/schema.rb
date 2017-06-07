@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170607103519) do
+ActiveRecord::Schema.define(version: 20170607131048) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,7 +52,9 @@ ActiveRecord::Schema.define(version: 20170607103519) do
     t.datetime "updated_at",     null: false
     t.integer  "category_id"
     t.integer  "credit_card_id"
+    t.integer  "company_id"
     t.index ["category_id"], name: "index_expenses_on_category_id", using: :btree
+    t.index ["company_id"], name: "index_expenses_on_company_id", using: :btree
     t.index ["credit_card_id"], name: "index_expenses_on_credit_card_id", using: :btree
     t.index ["user_id"], name: "index_expenses_on_user_id", using: :btree
   end
@@ -94,6 +96,7 @@ ActiveRecord::Schema.define(version: 20170607103519) do
   add_foreign_key "categories", "companies"
   add_foreign_key "credit_cards", "companies"
   add_foreign_key "expenses", "categories"
+  add_foreign_key "expenses", "companies"
   add_foreign_key "expenses", "credit_cards"
   add_foreign_key "expenses", "users"
   add_foreign_key "users", "companies"

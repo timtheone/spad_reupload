@@ -1,0 +1,19 @@
+<table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Date</th>
+          <th>Amount</th>
+          <th>Category</th>
+        </tr>
+      </thead>
+      <tbody>
+          <% @expenses.each do |c| %>
+            <tr>
+            <td><p><%= c.user.first_name %> <%= c.user.last_name %></p></td>
+            <td><p><%= c.date %><p></td>
+            <td><p><%= c.amount %><p></td>
+            <td><p><%= c.category.name %><p></td>
+          <% end %>
+      </tbody>
+    </table>

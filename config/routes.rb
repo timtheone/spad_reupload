@@ -20,6 +20,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :expenses, only: [:index, :create]
+
 
   resources :users, only: [:create, :new, :index, :show, :edit, :update]
 
