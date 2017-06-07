@@ -6,18 +6,38 @@ class UsersController < ApplicationController
       @user = User.new
   end
 
-  def create
-    @user = User.new(user_params)
-    @user.company_id = current_user.company_id
-    @user.save
+  # def create
+  #   @user = User.new(user_params)
+  #   @user.company_id = current_user.company_id
+  #   @user.save
+  #   redirect_to users_path
+  # end
+
+  def reinvite
+    @user = User.find(params[:id])
+    @user.invite!(current_user)
     redirect_to users_path
+    authorize @user
+  end
+
+  def destroy
+    set_user
+    @user.destroy
+    redirect_to users_path
+    authorize @user
+  end
+
+  def set_user
+     @user = User.find(params[:id])
   end
 
 private
 
   def user_params
-    params.require(:user).permit(:email)
+    params.require(:user).permit(:email, :id)
   end
 
-
 end
+
+
+

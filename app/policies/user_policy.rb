@@ -1,4 +1,5 @@
 class UserPolicy < ApplicationPolicy
+
   class Scope < Scope
     attr_reader :user, :scope
 
@@ -12,7 +13,16 @@ class UserPolicy < ApplicationPolicy
     end
   end
 
-  def show?
+  def reinvite?
+    user.admin?
+  end
 
+  def destroy?
+    user.admin?
+  end
+
+  def show?
+    user.admin?
   end
 end
+

@@ -7,6 +7,7 @@ class Users::InvitationsController < Devise::InvitationsController
   private
 
    def invite_params
-    params.require(:user).permit(:name, :email, :invitation_token, :company_id)
+    params.require(:user).permit(:name, :email, :invitation_token, :company_id, :status)
    end
+
 end
