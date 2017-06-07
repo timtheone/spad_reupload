@@ -1,5 +1,20 @@
 
 
+<h2><%= t "devise.invitations.new.header" %></h2>
+
+<%= simple_form_for :user, url: user_invitation_path, html: { method: :post} do |f| %>
+
+<% User.invite_key_fields.each do |field| -%>
+  <%= f.input field %>
+<% end %>
+  <input name="user[company_id]" type="hidden" value="<%= current_user.company_id %>">
+
+<%= f.button :submit, t("devise.invitations.new.submit_button") %>
+<% end %>
+
+
+
+
 <% if policy(User).index? %>
 
 <% @users.each do |user| %>
