@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170606132926) do
+ActiveRecord::Schema.define(version: 20170607103519) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 20170606132926) do
     t.string   "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "company_id"
+    t.index ["company_id"], name: "index_categories_on_company_id", using: :btree
   end
 
   create_table "companies", force: :cascade do |t|
@@ -30,13 +32,13 @@ ActiveRecord::Schema.define(version: 20170606132926) do
 
   create_table "credit_cards", force: :cascade do |t|
     t.string   "number"
-    t.string   "type"
-    t.date     "exp_date"
+    t.string   "credit_card_type"
+    t.string   "exp_date"
     t.integer  "billing_day"
     t.string   "status"
     t.date     "closed_date"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.integer  "company_id"
     t.index ["company_id"], name: "index_credit_cards_on_company_id", using: :btree
   end
@@ -89,6 +91,7 @@ ActiveRecord::Schema.define(version: 20170606132926) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "categories", "companies"
   add_foreign_key "credit_cards", "companies"
   add_foreign_key "expenses", "categories"
   add_foreign_key "expenses", "credit_cards"
