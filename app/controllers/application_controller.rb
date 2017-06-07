@@ -17,7 +17,12 @@ class ApplicationController < ActionController::Base
 
   private
 
+
   def skip_pundit?
     devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^pages$)/
   end
+
+  # def configure_permitted_parameters
+  # devise_parameter_sanitizer.for(:sign_up).push(:company_id)
+  # end
 end
