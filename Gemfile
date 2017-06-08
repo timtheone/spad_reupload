@@ -19,6 +19,9 @@ gem 'font-awesome-sass'
 gem 'simple_form'
 gem 'autoprefixer-rails'
 gem 'postmark-rails'
+gem 'cloudinary'
+gem 'carrierwave', '~> 0.11.2'
+gem 'money-rails'
 
 group :development, :test do
   gem 'binding_of_caller'

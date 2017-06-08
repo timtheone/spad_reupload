@@ -1,19 +1,46 @@
-<table class="table">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Date</th>
-          <th>Amount</th>
-          <th>Category</th>
-        </tr>
-      </thead>
-      <tbody>
-          <% @expenses.each do |c| %>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <%= simple_form_for @expense do |f| %>
+        <%= f.input :category_id, collection: Category.where(status: "Active"), prompt: "Pick a category" %>
+        <%= f.input :amount %>
+        <%= f.input :date %>
+        <%= f.input :recipient %>
+        <%= f.input :recipient_cache, as: :hidden %>
+        <%= f.submit %>
+      <% end %>
+    </div>
+    <div class="col-sm-6">
+      <table class="table">
+          <thead>
             <tr>
-            <td><p><%= c.user.first_name %> <%= c.user.last_name %></p></td>
-            <td><p><%= c.date %><p></td>
-            <td><p><%= c.amount %><p></td>
-            <td><p><%= c.category.name %><p></td>
-          <% end %>
-      </tbody>
-    </table>
+              <th>Name</th>
+              <th>Date</th>
+              <th>Amount</th>
+              <th>Category</th>
+            </tr>
+          </thead>
+          <tbody>
+              <% @expenses.each do |c| %>
+                <tr>
+                <td><p><%= c.user.first_name %> <%= c.user.last_name %></p></td>
+                <td><p><%= c.date %><p></td>
+                <td><p><%= humanized_money_with_symbol(c.amount) %><p></td>
+                <td><p><%= c.category.name %><p></td>
+              <% end %>
+          </tbody>
+        </table>
+        <% if params[:all] != "true" %>
+        <%= link_to "Previous Cycle", expenses_path(month: @previous_month, year: @previous_year ) %>
+        <%= link_to "Next Cycle", expenses_path(month: @next_month, year: @next_year ) %>
+        <%= link_to "Current Cycle", expenses_path %>
+        <%= link_to "All Time", expenses_path(all: "true") %>
+        <% else %>
+        <%= link_to "Current Cycle", expenses_path %>
+        <% end %>
+    </div>
+  </div>
+</div>
+
+
+
