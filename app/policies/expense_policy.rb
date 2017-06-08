@@ -13,6 +13,10 @@ class ExpensePolicy < ApplicationPolicy
   end
 
   def create?
-    user.admin
+    true
+  end
+
+  def previous_cycle?
+    true
   end
 end

@@ -1,9 +1,5 @@
 class CreditCardsController < ApplicationController
 
-  # def admin_list
-  #   authorize CreditCard
-  # end
-
   def index
     @credit_cards = policy_scope(CreditCard).order("
       CASE

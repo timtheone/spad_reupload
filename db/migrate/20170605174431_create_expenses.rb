@@ -3,7 +3,6 @@ class CreateExpenses < ActiveRecord::Migration[5.0]
     create_table :expenses do |t|
       t.references :user, foreign_key: true
       t.date :date
-      t.integer :amount
       t.integer :cycle
 
       t.timestamps

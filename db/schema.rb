@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170607131048) do
+ActiveRecord::Schema.define(version: 20170608101236) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,11 +48,13 @@ ActiveRecord::Schema.define(version: 20170607131048) do
     t.date     "date"
     t.integer  "amount"
     t.integer  "cycle"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.integer  "category_id"
     t.integer  "credit_card_id"
     t.integer  "company_id"
+    t.string   "recipient"
+    t.integer  "amount_cents",   default: 0, null: false
     t.index ["category_id"], name: "index_expenses_on_category_id", using: :btree
     t.index ["company_id"], name: "index_expenses_on_company_id", using: :btree
     t.index ["credit_card_id"], name: "index_expenses_on_credit_card_id", using: :btree
