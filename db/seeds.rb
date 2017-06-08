@@ -26,7 +26,7 @@ user_seed = [
   {
   first_name: "Tim",
   last_name: "Almamedov",
-  email: "tim.almamedov@gmail.com",
+  email: "tim@alboran.co",
   company_id: 1,
   password: "password",
   password_confirmation: "password",
@@ -37,7 +37,7 @@ user_seed = [
   first_name: "John",
   last_name: "Dawson",
   company_id: 1,
-  email: "john.dawson@gmail.com",
+  email: "john@alboran.co",
   password: "password",
   password_confirmation: "password",
   admin: false
@@ -47,7 +47,7 @@ user_seed = [
   first_name: "Nicolas",
   last_name: "Peltier",
   company_id: 1,
-  email: "nicolas.peltier@me.com",
+  email: "nicolas@alboran.co",
   password: "password",
   password_confirmation: "password",
   admin: true
@@ -57,7 +57,7 @@ user_seed = [
   first_name: "Peter",
   last_name: "Drucker",
   company_id: 2,
-  email: "peter.drucker@me.com",
+  email: "peter.drucker@alboran.co",
   password: "password",
   password_confirmation: "password",
   admin: true
@@ -66,7 +66,7 @@ user_seed = [
   first_name: "Peter",
   last_name: "Thiele",
   company_id: 2,
-  email: "peter.Thiele@me.com",
+  email: "peter.Thiele@malboran.co",
   password: "password",
   password_confirmation: "password",
   admin: true
@@ -75,7 +75,7 @@ user_seed = [
   first_name: "David",
   last_name: "Allen",
   company_id: 3,
-  email: "david.allen@me.com",
+  email: "david.allen@alboran.co",
   password: "password",
   password_confirmation: "password",
   admin: true
