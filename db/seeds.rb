@@ -94,13 +94,16 @@ credit_card_seed = [
 
 category_seed = [
   {
-  name: "Restaurant"
+  name: "Restaurant",
+  company_id: 1
   },
   {
-  name: "Software"
+  name: "Software",
+  company_id: 1
   },
   {
-  name: "Travels"
+  name: "Travels",
+  company_id: 1
   }
 ]
 
@@ -109,7 +112,19 @@ expense_seed = [
   user_id: 1,
   date: "10/10/2017",
   amount: 123,
-  company_id: 1
+  company_id: 1,
+  category_id: 1,
+  creditcard_id: 1
+
+  },
+  {
+  user_id: 2,
+  date: "10/11/2017",
+  amount: 133,
+  company_id: 1,
+  category_id: 2,
+  creditcard_id: 1
+
   }
 ]
 
