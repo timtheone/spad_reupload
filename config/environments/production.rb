@@ -60,7 +60,7 @@ Rails.application.configure do
 
   # postmark
   config.action_mailer.delivery_method     = :postmark
-  config.action_mailer.postmark_settings   = { api_key: ENV['1d737fd7-9f27-4843-ad60-fdc7799cdee6'] }
+  config.action_mailer.postmark_settings   = { api_key: ENV['POSTMARK_API_KEY'] }
   config.action_mailer.default_url_options = { host: "consenapp.herokuapp.com" }
 
   # Ignore bad email addresses and do not raise email delivery errors.

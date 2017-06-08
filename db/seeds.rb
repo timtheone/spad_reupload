@@ -114,7 +114,7 @@ expense_seed = [
   amount: 123,
   company_id: 1,
   category_id: 1,
-  creditcard_id: 1
+  credit_card_id: 1
 
   },
   {
@@ -123,7 +123,7 @@ expense_seed = [
   amount: 133,
   company_id: 1,
   category_id: 2,
-  creditcard_id: 1
+  credit_card_id: 1
 
   }
 ]
