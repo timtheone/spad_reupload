@@ -1,3 +1,5 @@
+
+
 <div class="container">
   <% if policy(@categories).new? %>
     <%= link_to "Add a category", new_category_path, class: "btn btn-primary" %>
@@ -26,8 +28,8 @@
             <% end %>
               <td><p><%= c.name %></p></td>
               <td><p><%= c.status %><p></td>
-              <td></td>
-              <td></td>
+              <td><%= c.expenses.sum(:amount) %></td>
+              <td><%= c.expenses.count %></td>
               <% if policy(@categories).new? %>
                 <% if (c.status != "Active") %>
                   <td><%= link_to "Activate", activate_category_path(c), method: :patch %></td>
