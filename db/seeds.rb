@@ -66,7 +66,7 @@ user_seed = [
   first_name: "Peter",
   last_name: "Thiele",
   company_id: 2,
-  email: "peter.Thiele@malboran.co",
+  email: "peter.Thiele@alboran.co",
   password: "password",
   password_confirmation: "password",
   admin: true
