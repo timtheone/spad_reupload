@@ -22,11 +22,6 @@ Rails.application.routes.draw do
 
   resources :expenses, only: [:index, :create]
 
-
-  namespace :company do
-    resources :expenses, only: [:index, :create]
-  end
-
   resources :users, only: [:create, :new, :index, :show, :edit, :update, :destroy]
   post '/users/:id/reinvite', to: 'users#reinvite', as: 'reinvite'
 

@@ -5,19 +5,35 @@ class ExpensesController < ApplicationController
     if params[:year]
       @selected_year = params[:year].to_i
       @selected_month = params[:month].to_i
-      @expenses = policy_scope(Expense).for_credit_card_by_cycle(card_id, @selected_month, @selected_year)
-                                       .where(user: current_user)
+
+      if params[:scope] == "company"
+        @expenses = policy_scope(Expense).for_credit_card_by_cycle(card_id, @selected_month, @selected_year)
+      else
+        @expenses = policy_scope(Expense).for_credit_card_by_cycle(card_id, @selected_month, @selected_year)
+                                         .where(user: current_user)
+      end
+
     elsif params[:all]
       @selected_month = Date.today.month
       @selected_year = Date.today.year
-      @expenses = policy_scope(Expense).where(user: current_user)
+      @expenses = policy_scope(Expense)
+
+      if params[:scope] == "company"
+        @expenses = policy_scope(Expense)
+      else
+        @expenses = policy_scope(Expense).where(user: current_user)
+      end
+
     else
       @selected_month = Date.today.month
       @selected_year = Date.today.year
-      @expenses = policy_scope(Expense).for_credit_card_by_cycle(card_id, @selected_month, @selected_year)
-                                       .where(user: current_user)
+      if params[:scope] == "company"
+        @expenses = policy_scope(Expense).for_credit_card_by_cycle(card_id, @selected_month, @selected_year)
+      else
+        @expenses = policy_scope(Expense).for_credit_card_by_cycle(card_id, @selected_month, @selected_year)
+                                         .where(user: current_user)
+      end
     end
-
     @expense = Expense.new
 
     if @selected_month < 12
