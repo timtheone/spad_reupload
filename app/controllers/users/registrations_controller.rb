@@ -24,7 +24,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @company.name = params[:company_name]
     @company.save
 
-    build_resource(sign_up_params.merge(company_id: @company.id))
+    build_resource(sign_up_params.merge(company_id: @company.id, admin: true))
 
     resource.save
     yield resource if block_given?
