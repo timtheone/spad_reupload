@@ -1,5 +1,6 @@
 <%= simple_form_for [@user] do |f| %>
-  <%= f.input :first_name %>
-    <%= f.input :last_name %>
+  <%= f.input :first_name %><br>
+  <%= f.input :last_name %><br>
+  <%= f.input :email %><br>
   <%= f.submit "change name", class: "btn btn-primary" %>
 <% end %>
