@@ -6,6 +6,11 @@ class UsersController < ApplicationController
       @user = User.new
   end
 
+def show
+  set_user
+  @company = Company.find(@user.company_id)
+  authorize @user
+end
   # def create
   #   @user = User.new(user_params)
   #   @user.company_id = current_user.company_id
@@ -19,6 +24,21 @@ class UsersController < ApplicationController
     redirect_to users_path
     authorize @user
   end
+
+  def edit
+    set_user
+    authorize @user
+
+  end
+
+  def update
+    set_user
+    @user.save
+    @user.update(user_params)
+    redirect_to user_path(@user)
+    authorize @user
+  end
+
 
   def destroy
     set_user
