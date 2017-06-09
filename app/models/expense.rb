@@ -28,7 +28,7 @@ class Expense < ApplicationRecord
     where(date: cycle_time_range)
   end
 
-  mount_uploader :recipient, RecipientUploader
+  mount_uploader :receipt, ReceiptUploader
 
   monetize :amount_cents
 end

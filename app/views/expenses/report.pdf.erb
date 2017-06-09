@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <%= wicked_pdf_stylesheet_link_tag 'application', media: 'all' -%>
+  <%= wicked_pdf_javascript_include_tag "number_pages" %>
+  <title>Expenses</title>
+</head>
+<body>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Date</th>
+        <th>Amount</th>
+        <th>Category</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% @expenses.each_with_index do |c, index| %>
+          <tr>
+          <td><p><%= index += 1 %></p></td>
+          <td><p><%= c.user.first_name %> <%= c.user.last_name %></p></td>
+          <td><p><%= c.date %><p></td>
+          <td><p><%= humanized_money_with_symbol(c.amount) %><p></td>
+          <td><p><%= c.category.name %><p></td>
+        <% end %>
+    </tbody>
+
+
+  </table>
+  <div class="page-break"></div>
+</body>
+</html>
+
+<% @expenses.each_with_index do |c, index| %>
+  <p>Receipt for ID: <%= index += 1 %></p>
+  <p><%= c.user.first_name %> <%= c.user.last_name %> | Date: <%= c.date %> | Amount: <%= humanized_money_with_symbol(c.amount) %></p>
+  <%= cl_image_tag c.receipt, height: 800, width: 700, format: :jpg %>
+  <div class="page-break"></div>
+<% end %>

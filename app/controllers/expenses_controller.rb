@@ -51,6 +51,14 @@ class ExpensesController < ApplicationController
       @previous_month = 12
       @previous_year = @selected_year - 1
     end
+
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render template: "expenses/report",
+        pdf: 'report'   # Excluding ".pdf" extension.
+      end
+    end
   end
 
   def create
@@ -63,15 +71,27 @@ class ExpensesController < ApplicationController
     if @expense.save
       redirect_to expenses_path
     else
-      flash[:alert] = "Wrong date or no recipient has been uploaded"
+      flash[:alert] = "Wrong date or no receipt has been uploaded"
       redirect_to expenses_path
     end
   end
 
+  # def show
+  #   @expense = Expense.find(params[:id])
+  #   respond_to do |format|
+  #     format.html
+  #     format.pdf do
+  #       render template: "expenses/report",
+  #       pdf: 'report'   # Excluding ".pdf" extension.
+  #     end
+  #   end
+  #   authorize @expense
+  # end
+
   private
 
   def expense_params
-    params.require(:expense).permit(:date, :amount, :category_id, :recipient, :recipient_cache)
+    params.require(:expense).permit(:date, :amount, :category_id, :receipt, :receipt_cache)
   end
 end
 
