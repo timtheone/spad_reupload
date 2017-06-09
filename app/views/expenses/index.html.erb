@@ -5,8 +5,8 @@
         <%= f.input :category_id, collection: Category.where(status: "Active"), prompt: "Pick a category" %>
         <%= f.input :amount %>
         <%= f.input :date %>
-        <%= f.input :recipient %>
-        <%= f.input :recipient_cache, as: :hidden %>
+        <%= f.input :receipt %>
+        <%= f.input :receipt_cache, as: :hidden %>
         <%= f.submit %>
       <% end %>
     </div>
@@ -47,5 +47,6 @@
   </div>
 </div>
 
+<%= link_to "Export", expenses_path(format: :pdf, scope: params[:scope], month: params[:month], year: params[:year], all: params[:all]) %>
 
 

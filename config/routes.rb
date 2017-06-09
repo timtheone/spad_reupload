@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :expenses, only: [:index, :create]
+  resources :expenses, only: [:index, :create, :show]
 
   resources :users, only: [:create, :new, :index, :show, :edit, :update, :destroy]
   post '/users/:id/reinvite', to: 'users#reinvite', as: 'reinvite'

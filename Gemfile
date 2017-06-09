@@ -22,6 +22,8 @@ gem 'postmark-rails'
 gem 'cloudinary'
 gem 'carrierwave', '~> 0.11.2'
 gem 'money-rails'
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
 
 group :development, :test do
   gem 'binding_of_caller'

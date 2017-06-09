@@ -16,7 +16,7 @@ class ExpensePolicy < ApplicationPolicy
     true
   end
 
-  def previous_cycle?
+  def show?
     true
   end
 end

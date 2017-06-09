@@ -28,7 +28,7 @@
             <% end %>
               <td><p><%= c.name %></p></td>
               <td><p><%= c.status %><p></td>
-              <td><p><%= c.expenses.sum(:amount) %></p></td>
+              <td><p><%= c.expenses.sum(:amount_cents) %></p></td>
               <td><p><%= c.expenses.count %></p></td>
               <% if policy(@categories).new? %>
                 <% if (c.status != "Active") %>
@@ -43,3 +43,4 @@
       </tbody>
     </table>
 </div>
+
