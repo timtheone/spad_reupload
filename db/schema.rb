@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 20170609113924) do
     t.integer  "amount_cents",   default: 0, null: false
     t.string   "receipt"
     t.index ["category_id"], name: "index_expenses_on_category_id", using: :btree
-    t.index ["company_id"], name: "index_expenses_on_company_id", u§sing: :btree
+    t.index ["company_id"], name: "index_expenses_on_company_id", using: :btree
     t.index ["credit_card_id"], name: "index_expenses_on_credit_card_id", using: :btree
     t.index ["user_id"], name: "index_expenses_on_user_id", using: :btree
   end
