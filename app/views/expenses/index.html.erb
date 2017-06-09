@@ -11,6 +11,11 @@
       <% end %>
     </div>
     <div class="col-sm-6">
+      <% if params[:scope] == "company" %>
+        <%= link_to "My expenses", expenses_path %>
+      <% else %>
+       <%= link_to "Company", expenses_path(scope: "company") %>
+      <% end %>
       <table class="table">
           <thead>
             <tr>
@@ -31,12 +36,12 @@
           </tbody>
         </table>
         <% if params[:all] != "true" %>
-        <%= link_to "Previous Cycle", expenses_path(month: @previous_month, year: @previous_year ) %>
-        <%= link_to "Next Cycle", expenses_path(month: @next_month, year: @next_year ) %>
-        <%= link_to "Current Cycle", expenses_path %>
-        <%= link_to "All Time", expenses_path(all: "true") %>
+        <%= link_to "Previous Cycle", expenses_path(scope: params[:scope], month: @previous_month, year: @previous_year) %>
+        <%= link_to "Next Cycle", expenses_path(scope: params[:scope], month: @next_month, year: @next_year ) %>
+        <%= link_to "Current Cycle", expenses_path(scope: params[:scope]) %>
+        <%= link_to "All Time", expenses_path(scope: params[:scope], all: "true") %>
         <% else %>
-        <%= link_to "Current Cycle", expenses_path %>
+        <%= link_to "Current Cycle", expenses_path(scope: params[:scope]) %>
         <% end %>
     </div>
   </div>
