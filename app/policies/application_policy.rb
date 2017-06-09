@@ -12,9 +12,9 @@ class ApplicationPolicy
   end
 
   def show?
-    # true
+    true
     # scope.where(:id => record.id).exists?
-    user.admin?
+   #  user.admin?
   end
 
   def create?

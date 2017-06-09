@@ -14,15 +14,29 @@ class UserPolicy < ApplicationPolicy
   end
 
   def reinvite?
-    user.admin?
+    user.admin
   end
 
   def destroy?
-    user.admin?
+    user.admin
   end
 
   def show?
-    user.admin?
+   true
+   # user == record.user  || user.admin
   end
+
+  def edit?
+   true
+   # user == record.user || user.admin
+  end
+
+  def update?
+       true
+       #  user == current_user || user.admin
+  end
+
+
+
 end
 
