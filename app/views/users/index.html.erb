@@ -12,6 +12,17 @@
     <%= f.button :submit, t("devise.invitations.new.submit_button") %>
   <% end %>
   <br>
+
+
+
+
+
+
+
+
+
+
+
   <% if policy(User).index? %>
   <div class="table-responsive">
     <table class="table table-condensed">
@@ -29,6 +40,9 @@
           <strong>Status</strong>
         </td>
         <td>
+          <strong>Role</strong>
+        </td>
+        <td>
           <strong>Invitation sent</strong>
         </td>
         <td>
@@ -42,22 +56,23 @@
         <td><%= user.last_name %></td>
         <td><%= user.email %></td>
         <td><%= user.status %></td>
+        <td><%= user.role(user) %></td>
         <td><%= user.invitation_sent_at %></td>
-          <td>
-            <% if policy(user).reinvite? %>
-              <%= link_to 'Re-invite', reinvite_path(user), :class => "btn-medium", method: :post %>
-             <% end %>
-             <% if policy(user).destroy? %>
-               <%= link_to 'Delete', user_path(user),
-                :class => "btn-medium",
-                method: :delete,
-                data: { confirm: "Are you sure?" } %>
-              <% end %>
-         </td>
+        <td>
+          <% if policy(user).reinvite? %>
+          <%= link_to 'Re-invite', reinvite_path(user), :class => "btn-medium", method: :post %>
+          <% end %>
+          <% if policy(user).destroy? %>
+          <%= link_to 'Delete', user_path(user),
+          :class => "btn-medium",
+          method: :delete,
+          data: { confirm: "Are you sure?" } %>
+          <% end %>
+        </td>
       </tr>
       <% end %>
     </table>
   </div>
-<% end %>
+  <% end %>
 </div>
 

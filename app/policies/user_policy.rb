@@ -12,6 +12,11 @@ class UserPolicy < ApplicationPolicy
       user.admin? ? scope.where(company_id: user.company_id) : scope.none
     end
   end
+  def index
+      user.admin
+  end
+
+
 
   def reinvite?
     user.admin

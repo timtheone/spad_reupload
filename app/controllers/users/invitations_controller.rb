@@ -6,6 +6,16 @@ class Users::InvitationsController < Devise::InvitationsController
     users_path
   end
 
+
+  def after_sign_up_path_for(resource)
+    #super(resource)
+    expenses_path
+  end
+
+  def after_sign_in_path_for(resource)
+    #super(resource)
+    expenses_path
+  end
   private
 
    def invite_params

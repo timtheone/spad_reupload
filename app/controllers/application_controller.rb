@@ -10,15 +10,34 @@ class ApplicationController < ActionController::Base
 
   # Uncomment when you *really understand* Pundit!
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
-
-  private
-
-  def skip_pundit?
-    devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^pages$)/
+  def after_sign_in_path_for(resource)
+    expenses_path
   end
 
-  def user_not_authorized
-    flash[:alert] = "You are not authorized to perform this action."
-    redirect_to(request.referrer || root_path)
+  def after_sign_in_path_for(resource)
+  # count the number of users in the same company
+  # if just one user, to invite
+  # other wise, ot
+  # resource.company_id
+  nb_users = User.where(company_id: resource.company_id).count
+  if (nb_users < 2 && current_user.admin?)
+    then
+    return users_path
+  else
+    return expenses_path
   end
+
+end
+
+
+private
+
+def skip_pundit?
+  devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^pages$)/
+end
+
+def user_not_authorized
+  flash[:alert] = "You are not authorized to perform this action."
+  redirect_to(request.referrer || root_path)
+end
 end
