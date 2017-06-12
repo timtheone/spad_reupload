@@ -2,11 +2,11 @@
   <div class="row">
     <div class="col-sm-6 col-sm-offset-3">
       <%= simple_form_for @credit_card do |f| %>
-        <%= f.input :number %>
+        <%= f.input :number, input_html: { value: '' } %>
         <%= f.input :credit_card_type %>
         <%= f.input :exp_date, label: "Expiry date (mm/yy)" %>
         <%= f.input :billing_day %>
-        <%= f.input :status, collection: ["Active", "Not Active"], prompt: "select current status" %>
+        <%= f.input :status, input_html: { value: 'Not active' }, as: :hidden %>
         <%= f.submit %>
       <% end %>
     </div>

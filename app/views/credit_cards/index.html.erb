@@ -1,4 +1,4 @@
-  <div class="container">
+ <div class="container">
     <% if policy(@credit_cards).new? %>
       <%= link_to "Add a credit card", new_credit_card_path, class: "btn btn-primary" %>
     <% end %>
@@ -17,7 +17,7 @@
     <tbody>
         <% @credit_cards.each do |c| %>
       <tr>
-        <td><%= c.number %></td>
+        <td><%= c.mask %></td>
         <td><%= c.credit_card_type %></td>
         <td><%= c.exp_date %></td>
         <td><%= c.billing_day %></td>
@@ -25,7 +25,7 @@
 
         <% if policy(@credit_cards).activate? %>
           <% if c.status == "Closed" %>
-            <td></td>
+            <td><%= link_to "Activate", activate_credit_card_path(c), method: :patch %></td>
           <% elsif (c.status != "Active") %>
             <td><%= link_to "Activate", activate_credit_card_path(c), method: :patch %></td>
           <% else %>
@@ -42,9 +42,9 @@
           <% if (c.status == "Closed") || (c.status == "Active") %>
             <td></td>
           <% else %>
-            <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Close</button></td>
+            <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal<%=c.id%>">Close</button></td>
 
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="exampleModal<%=c.id%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
