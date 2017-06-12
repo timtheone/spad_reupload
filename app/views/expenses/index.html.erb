@@ -1,66 +1,81 @@
 <div class="container">
-  <p class="text-center">Active card: <%= current_user.company.credit_cards.where(status: "Active").first.mask %></p>
   <div class="row">
-    <div class="col-sm-6">
-      <%= simple_form_for @expense do |f| %>
-        <%= f.input :category_id, collection: Category.where(status: "Active"), prompt: "Pick a category" %>
-        <%= f.input :amount %>
-        <%= f.input :date %>
-        <%= f.input :details %>
-        <%= f.input :receipt %>
-        <%= f.input :receipt_cache, as: :hidden %>
-        <%= f.submit %>
-      <% end %>
-    </div>
-    <div class="col-sm-6">
-      <% if params[:year].present? %>
-        <p>Period: <%= Date.new(params[:year].to_i,params[:month].to_i,current_user.company.credit_cards.where(status: "Active").first.billing_day).prev_month %> - <%= Date.new(params[:year].to_i,params[:month].to_i,current_user.company.credit_cards.where(status: "Active").first.billing_day) %></p>
-      <% elsif params[:all].present? %>
-        <p>Period: All time</p>
-      <% else %>
-        <p>Period: <%= Date.new(Date.today.year,Date.today.month,current_user.company.credit_cards.where(status: "Active").first.billing_day).prev_month %> - <%= Date.new(Date.today.year,Date.today.month,current_user.company.credit_cards.where(status: "Active").first.billing_day) %></p>
-      <% end %>
-
-      <% if params[:scope] == "company" %>
-        <%= link_to "My expenses", expenses_path %>
-      <% else %>
-       <%= link_to "Company", expenses_path(scope: "company") %>
-      <% end %>
-      <table class="table">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Date</th>
-              <th>Amount</th>
-              <th>Category</th>
-              <th>Details</th>
-            </tr>
-          </thead>
-          <tbody>
-              <% @expenses.each do |c| %>
-                <tr>
-                <td><p><%= c.user.first_name %> <%= c.user.last_name %></p></td>
-                <td><p><%= c.date %><p></td>
-                <td><p><%= humanized_money_with_symbol(c.amount) %><p></td>
-                <td><p><%= c.category.name %><p></td>
-                <td><p><%= truncate(c.details, length: 14) %><p></td>
-              <% end %>
-          </tbody>
-        </table>
-        <% if params[:all] != "true" %>
-          <%= link_to "<", expenses_path(scope: params[:scope], month: @previous_month, year: @previous_year) %>
+    <div class="col-sm-4">
+      <div class="box-outter">
+          <div class="form-box-credit-card">
+            <p class="text-center">Active card: <%= current_user.company.credit_cards.where(status: "Active").first.mask %></p>
+          </div>
+        <div class="box-inner">
+          <%= simple_form_for @expense do |f| %>
+            <%= f.input :category_id, collection: Category.where(status: "Active"), prompt: "Pick a category" %>
+            <%= f.input :amount %>
+            <%= f.input :date %>
+            <%= f.input :details %>
+            <%= f.input :receipt %>
+            <%= f.input :receipt_cache, as: :hidden %>
+            <%= f.submit class: "btn-spad" %>
+          <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-8">
+        <div class="box-outter">
+          <div class="box-inner">
             <% if params[:year].present? %>
-              <%= Date::MONTHNAMES[params[:month].to_i] %> <%= params[:year] %>
+              <p>Period: <%= Date.new(params[:year].to_i,params[:month].to_i,current_user.company.credit_cards.where(status: "Active").first.billing_day).prev_month %> - <%= Date.new(params[:year].to_i,params[:month].to_i,current_user.company.credit_cards.where(status: "Active").first.billing_day) %></p>
+            <% elsif params[:all].present? %>
+              <p>Period: All time</p>
             <% else %>
-              <%= Date::MONTHNAMES[Date.today.month] %> <%= Date.today.year %>
+              <p>Period: <%= Date.new(Date.today.year,Date.today.month,current_user.company.credit_cards.where(status: "Active").first.billing_day).prev_month %> - <%= Date.new(Date.today.year,Date.today.month,current_user.company.credit_cards.where(status: "Active").first.billing_day) %></p>
             <% end %>
-          <%= link_to ">", expenses_path(scope: params[:scope], month: @next_month, year: @next_year ) %>
-          <%= link_to "Current Cycle", expenses_path(scope: params[:scope]) %>
-          <%= link_to "All Time", expenses_path(scope: params[:scope], all: "true") %>
-        <% else %>
-          <%= link_to "Current Cycle", expenses_path(scope: params[:scope]) %>
-        <% end %>
-        <p>Total amount for this period: €<%= @total_expense %></p>
+            <% if params[:all] != "true" %>
+              <div id="cycle-controls">
+                <%= link_to expenses_path(scope: params[:scope], month: @previous_month, year: @previous_year) do %>
+                  <span class="arrow-left"></span>
+                <% end %>
+                  <% if params[:year].present? %>
+                    <%= Date::MONTHNAMES[params[:month].to_i] %> <%= params[:year] %>
+                  <% else %>
+                    <%= Date::MONTHNAMES[Date.today.month] %> <%= Date.today.year %>
+                  <% end %>
+                <%= link_to expenses_path(scope: params[:scope], month: @next_month, year: @next_year) do %>
+                  <span class="arrow-right"></span>
+                <% end %>
+              </div>
+              <%= link_to "Current Cycle", expenses_path(scope: params[:scope]), class: "btn-spad-green" %>
+              <span id="all-time-cycle-controls"><%= link_to "All Time", expenses_path(scope: params[:scope], all: "true"), class: "btn-spad-green" %></span>
+            <% else %>
+                <span id="all-time-cycle-controls"><%= link_to "Current Cycle", expenses_path(scope: params[:scope]), class: "btn-spad-green" %></span>
+            <% end %>
+            <% if params[:scope] == "company" %>
+              <%= link_to "My expenses", expenses_path, class: "btn-spad-green" %>
+            <% else %>
+             <%= link_to "Company", expenses_path(scope: "company"), class: "btn-spad-green" %>
+            <% end %>
+            <table class="table margined-top">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>Amount</th>
+                    <th>Category</th>
+                    <th>Details</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <% @expenses.each do |c| %>
+                      <tr>
+                      <td><p><%= c.user.first_name %> <%= c.user.last_name %></p></td>
+                      <td><p><%= c.date %><p></td>
+                      <td><p><%= humanized_money_with_symbol(c.amount) %><p></td>
+                      <td><p><%= c.category.name %><p></td>
+                      <td><p><%= truncate(c.details, length: 14) %><p></td>
+                    <% end %>
+                </tbody>
+              </table>
+              <p>Total amount for this period: €<%= @total_expense %></p>
+        </div>
+      </div>
     </div>
   </div>
 </div>
