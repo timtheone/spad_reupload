@@ -1,10 +1,17 @@
 
-<div class="container">
-<h1>
-Welcome to Consensus
-</h1>
 
-<p>
-</p>
-<%= link_to 'Click here to enroll your company, and start inviting users', new_user_registration_path %>
+<div class="container">
+  <h1>
+    Welcome to Consensus
+  </h1>
+  <br>
+  <p>
+  </p>
+  <% if !user_signed_in? %>
+   <%= link_to 'Click here to enroll your company, and start inviting users', new_user_registration_path %>
+   <% else %>
+   <%= link_to 'Click here to access Expenses management', expenses_path %>
+   <% end %>
+
 </div>
+
