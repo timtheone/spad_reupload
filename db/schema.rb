@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170609113924) do
+ActiveRecord::Schema.define(version: 20170612123813) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 20170609113924) do
     t.integer  "company_id"
     t.integer  "amount_cents",   default: 0, null: false
     t.string   "receipt"
+    t.text     "details"
     t.index ["category_id"], name: "index_expenses_on_category_id", using: :btree
     t.index ["company_id"], name: "index_expenses_on_company_id", using: :btree
     t.index ["credit_card_id"], name: "index_expenses_on_credit_card_id", using: :btree

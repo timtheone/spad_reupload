@@ -7,6 +7,16 @@
   <title>Expenses</title>
 </head>
 <body>
+  <h3>Company: <%= current_user.company.name %></h3>
+  <% if params[:year].present? %>
+    <p>Report for period: <%= Date.new(params[:year].to_i,params[:month].to_i,current_user.company.credit_cards.where(status: "Active").first.billing_day).prev_month %> - <%= Date.new(params[:year].to_i,params[:month].to_i,current_user.company.credit_cards.where(status: "Active").first.billing_day) %></p>
+  <% elsif params[:all].present? %>
+     <p>Report for period: All time</p>
+  <% else %>
+    <p>Report for period: <%= Date.new(Date.today.year,Date.today.month,current_user.company.credit_cards.where(status: "Active").first.billing_day).prev_month %> - <%= Date.new(Date.today.year,Date.today.month,current_user.company.credit_cards.where(status: "Active").first.billing_day) %></p>
+  <% end %>
+  <p>Credit card: <%= current_user.company.credit_cards.where(status: "Active").first.mask %></p>
+  <p>Total amount for this period: €<%= @total_expense %></p>
   <table class="table">
     <thead>
       <tr>
@@ -37,6 +47,7 @@
 <% @expenses.each_with_index do |c, index| %>
   <p>Receipt for ID: <%= index += 1 %></p>
   <p><%= c.user.first_name %> <%= c.user.last_name %> | Date: <%= c.date %> | Amount: <%= humanized_money_with_symbol(c.amount) %></p>
+  <p>Details: <%= c.details %></p>
   <%= cl_image_tag c.receipt, height: 800, width: 700, format: :jpg %>
   <div class="page-break"></div>
 <% end %>
