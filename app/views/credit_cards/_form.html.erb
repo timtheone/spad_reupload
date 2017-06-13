@@ -1,14 +1,18 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-6 col-sm-offset-3">
-      <%= simple_form_for @credit_card do |f| %>
-        <%= f.input :number, input_html: { value: '' } %>
-        <%= f.input :credit_card_type %>
-        <%= f.input :exp_date, label: "Expiry date (mm/yy)" %>
-        <%= f.input :billing_day %>
-        <%= f.input :status, input_html: { value: 'Not active' }, as: :hidden %>
-        <%= f.submit %>
-      <% end %>
+      <div class="box-outter">
+        <div class="box-inner">
+          <%= simple_form_for @credit_card do |f| %>
+            <%= f.input :number, input_html: { value: '' } %>
+            <%= f.input :credit_card_type %>
+            <%= f.input :exp_date, label: "Expiry date (mm/yy)" %>
+            <%= f.input :billing_day %>
+            <%= f.input :status, input_html: { value: 'Not active' }, as: :hidden %>
+            <%= f.submit class: "btn-spad" %>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
 </div>

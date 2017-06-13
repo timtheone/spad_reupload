@@ -1,22 +1,10 @@
-.transparent {
-
-  background-color: #ECECEC;
+.category-table > tbody > tr > td {
+  padding-top: 17px;
+  padding-bottom: 17px;
 }
 
-.transparent p {
-  opacity: 0.5;
-}
-
-.product-arrow {
-  transition: all 0.15s ease;
-  width: 0;
-  height: 0;
-  border-left: 6px solid transparent;
-  border-right: 6px solid transparent;
-  border-top: 6px solid transparent;
-  border-bottom: 9px solid black;
-  border-radius: 2px;
-  margin: auto;
+.category-table > tbody > tr > td > button {
+  margin: -7px;
 }
 
 .arrow-left {
