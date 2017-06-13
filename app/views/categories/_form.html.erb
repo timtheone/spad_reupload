@@ -1,11 +1,15 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-6 col-sm-offset-3">
-      <%= simple_form_for @category do |f| %>
-        <%= f.input :name %>
-        <%= f.input :status, input_html: { value: 'Active' }, as: :hidden %>
-        <%= f.submit %>
-      <% end %>
+      <div class="box-outter">
+        <div class="box-inner">
+          <%= simple_form_for @category do |f| %>
+            <%= f.input :name, label: "Category name" %>
+            <%= f.input :status, input_html: { value: 'Active' }, as: :hidden %>
+            <%= f.submit class: "btn-spad" %>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
 </div>

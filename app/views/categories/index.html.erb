@@ -1,46 +1,50 @@
 
-
 <div class="container">
-  <% if policy(@categories).new? %>
-    <%= link_to "Add a category", new_category_path, class: "btn btn-primary" %>
-  <% end %>
-
-  <table class="table">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Status</th>
-          <th>Amount</th>
-          <th>Number of entries</th>
-          <% if policy(@categories).new? %>
-            <th colspan="2" class="text-center">Controls</th>
-          <% else %>
-            <th>Controls</th>
-          <% end %>
-        </tr>
-      </thead>
-      <tbody>
-          <% @categories.each do |c| %>
-            <% if c.status == "Not active" %>
-              <tr class="transparent">
-            <% else %>
-              <tr>
-            <% end %>
-              <td><p><%= c.name %></p></td>
-              <td><p><%= c.status %><p></td>
-              <td><p>€<%= Money.new(c.expenses.sum(:amount_cents), 'EUR') %></p></td>
-              <td><p><%= c.expenses.count %></p></td>
+<h3 class="text-center">Categories</h3>
+  <div class="box-outter">
+  <div class="padded-bottom"><% if policy(@categories).new? %>
+    <%= link_to "Add a category", new_category_path, class: "btn-spad" %>
+  <% end %></div>
+    <div class="box-inner">
+    <div class="table-responsive">
+      <table class="table category-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Status</th>
+              <th class="text-right">Amount</th>
+              <th class="text-center">Number of entries</th>
               <% if policy(@categories).new? %>
-                <% if (c.status != "Active") %>
-                  <td><%= link_to "Activate", activate_category_path(c), method: :patch %></td>
-                <% else %>
-                  <td><%= link_to "Deactivate", deactivate_category_path(c), method: :patch %></td>
-                <% end %>
+                <th colspan="2" class="text-center">Controls</th>
+              <% else %>
               <% end %>
-              <td><%= link_to "Edit", edit_category_path(c) %></td>
             </tr>
-          <% end %>
-      </tbody>
-    </table>
+          </thead>
+          <tbody>
+              <% @categories.each do |c| %>
+                <% if c.status == "Not active" %>
+                  <tr>
+                <% else %>
+                  <tr>
+                <% end %>
+                  <td><p><%= c.name %></p></td>
+                  <td><p><%= c.status %><p></td>
+                  <td class="text-right"><p>€<%= Money.new(c.expenses.sum(:amount_cents), 'EUR') %></p></td>
+                  <td class="text-center" ;"><p><%= c.expenses.count %></p></td>
+                  <% if policy(@categories).new? %>
+                    <% if (c.status != "Active") %>
+                      <td class="padded-top-table"><%= link_to "Activate", activate_category_path(c), method: :patch, class: "btn-spad-green" %></td>
+                    <% else %>
+                      <td><%= link_to "Deactivate", deactivate_category_path(c), method: :patch, class: "btn-spad-green" %></td>
+                    <% end %>
+                  <td><%= link_to "Edit", edit_category_path(c), class: "btn-spad-green" %></td>
+                  <% end %>
+                </tr>
+              <% end %>
+          </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
 </div>
 
