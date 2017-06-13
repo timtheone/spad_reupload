@@ -1,39 +1,33 @@
 <div class="navbar-wagon">
   <!-- Logo -->
   <%= link_to root_path, class: "navbar-wagon-brand" do %>
-  <%= image_tag "logo.png" %>
+  <%= image_tag "logo.png", width: '500' %>
   <% end %>
 
-  <!-- Right Navigation -->
+
+
+
+
+
   <div class="navbar-wagon-right hidden-xs hidden-sm">
+    <% if current_page?(root_path) %>
+    <!-- Profile picture and dropdown -->
+    <a href="" class="navbar-wagon-item navbar-wagon-link">Products</a>
 
-    <!-- Search form -->
-<!--     <form action="" class="navbar-wagon-search">
-      <input type="text" class="navbar-wagon-search-input" placeholder="Search something">
-      <button type="submit" class="navbar-wagon-search-btn">
-        <i class="fa fa-search"></i>
-      </button>
-    </form> -->
+    <a href="" class="navbar-wagon-item navbar-wagon-link">Customers</a>
 
-    <!-- Different navigation if login or not -->
+    <a href="" class="navbar-wagon-item navbar-wagon-link">Price</a>
+
+    |
+    <% end %>
+
     <% if user_signed_in? %>
 
-    <!-- Notification -->
-<!--     <%= link_to "#", class: "navbar-wagon-item navbar-wagon-link" do %>
-    <div class="badge-container">
-      <i class="fa fa-envelope-o"></i>
-      <div class="badge badge-blue">3</div>
-    </div>
-    <% end %> -->
 
-    <!-- Profile picture and dropdown -->
     <div class="navbar-wagon-item">
       <div class="dropdown">
 
-
-
-            <%= image_tag "http://placehold.it/30x30", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
-
+        <a href="" class="navbar-wagon-item navbar-wagon-link dropdown-toggle" id="navbar-wagon-menu" data-toggle="dropdown">Menu</a>
 
         <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
           <li>
@@ -43,27 +37,53 @@
           </li>
           <li>
             <%= link_to expenses_path do %>
-            <i class="fa fa-home"></i>  <%= t(".profile", default: "Expenses") %>
+            <i class="fa fa-money"></i>  <%= t(".profile", default: "Expenses") %>
             <% end %>
           </li>
           <li>
             <%= link_to credit_cards_path do %>
-            <i class="fa fa-home"></i>  <%= t(".profile", default: "Credit Cards") %>
+            <i class="fa fa-credit-card"></i>  <%= t(".profile", default: "Credit Cards") %>
             <% end %>
           </li>
           <li>
             <%= link_to categories_path do %>
-            <i class="fa fa-home"></i>  <%= t(".profile", default: "Categories") %>
+            <i class="fa fa-files-o"></i>  <%= t(".profile", default: "Categories") %>
             <% end %>
           </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="navbar-wagon-item">
+      <div class="dropdown">
+
+        <a href="" class="navbar-wagon-item navbar-wagon-link dropdown-toggle" id="navbar-wagon-menu" data-toggle="dropdown">Settings</a>
+
+
+        <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
           <% if current_user.admin? %>
-            <li>
-              <%= link_to users_path do %>
-              <i class="fa fa-home"></i>  <%= t(".profile", default: "Team members") %>
-              <% end %>
+          <li>
+            <%= link_to users_path do %>
+            <i class="fa fa-users"></i>  <%= t(".profile", default: "Team members") %>
+            <% end %>
           </li>
           <% end %>
+        </ul>
+      </div>
+    </div>
+    <div class="navbar-wagon-item">
+      <div class="dropdown">
+        <% if user_signed_in? %>
+        <% if !current_user.portrait? %>
+        <%= image_tag "http://placehold.it/30x30", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+        <% else %>
 
+        <%= cl_image_tag current_user.portrait, class: 'avatar-bordered', crop: :fill, id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+        <% end %>
+        <% else %>
+        <%= image_tag "http://placehold.it/30x30", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+        <% end %>
+        <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
           <li>
             <%= link_to user_path(current_user) do %>
             <i class="fa fa-user"></i> <%= t(".profile", default: "My Profile") %>
@@ -78,6 +98,8 @@
       </div>
     </div>
 
+
+
     <% else %>
 
     <!-- Login text link -->
@@ -85,57 +107,56 @@
 
     <% end %>
 
-    <!-- Button (call-to-action) -->
-<!--     <%= link_to t(".top_call_to_action", default: "Post stuff"), "#", class: "navbar-wagon-item navbar-wagon-button btn" %> -->
   </div>
 
   <!-- Dropdown list appearing on mobile only -->
-<div class="navbar-wagon-item hidden-md hidden-lg">
+  <div class="navbar-wagon-item hidden-md hidden-lg">
 
     <% if user_signed_in? %>
 
     <div class="dropdown">
       <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
       <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-          <li>
-            <%= link_to root_path do %>
-            <i class="fa fa-home"></i>  <%= t(".profile", default: "Home") %>
-            <% end %>
-          </li>
-          <li>
-            <%= link_to expenses_path do %>
-            <i class="fa fa-home"></i>  <%= t(".profile", default: "Expenses") %>
-            <% end %>
-          </li>
-          <li>
-            <%= link_to credit_cards_path do %>
-            <i class="fa fa-home"></i>  <%= t(".profile", default: "Credit Cards") %>
-            <% end %>
-          </li>
-          <li>
-            <%= link_to categories_path do %>
-            <i class="fa fa-home"></i>  <%= t(".profile", default: "Categories") %>
-            <% end %>
-          </li>
-          <li>
-            <%= link_to users_path do %>
-            <i class="fa fa-home"></i>  <%= t(".profile", default: "Team members") %>
-            <% end %>
-          </li>
+        <li>
+          <%= link_to root_path do %>
+          <i class="fa fa-home"></i>  <%= t(".profile", default: "Home") %>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to expenses_path do %>
+          <i class="fa fa-money"></i>  <%= t(".profile", default: "Expenses") %>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to credit_cards_path do %>
+          <i class="fa fa-credit-card"></i>  <%= t(".profile", default: "Credit Cards") %>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to categories_path do %>
+          <i class="fa fa-files-o"></i>  <%= t(".profile", default: "Categories") %>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to users_path do %>
+          <i class="fa fa-users"></i>  <%= t(".profile", default: "Team members") %>
+          <% end %>
+        </li>
 
-          <li>
-            <%= link_to user_path(current_user) do %>
-            <i class="fa fa-user"></i> <%= t(".profile", default: "My Profile") %>
-            <% end %>
-          </li>
-          <li>
-            <%= link_to destroy_user_session_path, method: :delete do %>
-            <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
-            <% end %>
-          </li>
+        <li>
+          <%= link_to user_path(current_user) do %>
+          <i class="fa fa-user"></i> <%= t(".profile", default: "My Profile") %>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to destroy_user_session_path, method: :delete do %>
+          <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
+          <% end %>
+        </li>
       </ul>
     </div>
     <% end %>
   </div>
 </div>
+
 

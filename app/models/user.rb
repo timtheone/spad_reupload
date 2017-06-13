@@ -19,8 +19,7 @@ class User < ApplicationRecord
       else return "User"
       end
   end
-
-
+  mount_uploader :portrait, PortraitUploader
   private
 
   def send_welcome_email
