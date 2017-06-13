@@ -16,13 +16,21 @@
 }
 
 .btn-spad-green {
-  background: #FFFFFF;
+  background-color: #FFFFFF;
   border: 2px solid #25CED1;
   box-shadow: 0 2px 11px 0 rgba(224,201,201,0.50);
   border-radius: 8px;
-  transition: background-color 0.4s;
-  transition: color 0.4s;
+  transition: background-color 0.2s;
+  transition: color 0.2s;
   color: black;
   padding: 5px;
   text-decoration: none;
+}
+
+.btn-spad-green:hover {
+  opacity: 1;
+  text-decoration: none;
+  color: white;
+  background-color: #25CED1;
+  border: 2px solid #25CED1;
 }
