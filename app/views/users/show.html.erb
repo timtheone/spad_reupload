@@ -1,14 +1,15 @@
+<div class="container">
+  <div class="box-outter">
+    <div class="box-inner">
+      <p><strong>First Name :</strong> <%= @user.first_name %></p>
+      <p><strong>Last Name :</strong> <%= @user.last_name %></p>
+      <p><strong>Email :</strong>  <%= @user.email %></p>
+      <p><strong>Type :</strong>  <%= @user.role(@user) %></p>
+      <%= cl_image_tag @user.portrait, crop: :fill, class: "avatar-large-profile" %>
+      <br>
 
-Company : <%= @company.name %><br>
-First Name : <%= @user.first_name %><br>
-Last Name : <%= @user.last_name %><br>
-Email :  <%= @user.email %><br>
-Role :  <%= @user.role(@user) %><br>
-<%= cl_image_tag @user.portrait, height: 100, crop: :fill %>
-<br>
-
-<%= link_to 'Change Password', edit_user_password_path %><br>
-<%= link_to 'Change Name', edit_user_path(@user) %><br>
-
-
-
+      <p class="margined-bottom"><%= link_to 'Edit profile', edit_user_path(@user), class: "btn-spad-cancel", style: "white-space: nowrap;" %></p>
+      <p><%= link_to 'Change Password', edit_user_password_path, class: "btn-spad-green", style: "white-space: nowrap;" %></p>
+    </div>
+  </div>
+</div>

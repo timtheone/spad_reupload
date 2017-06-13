@@ -1,6 +1,7 @@
 <div class="container">
   <div class="row">
   <div class="box-outter">
+  <% if policy(User).reinvite? %>
     <div class="box-inner">
       <h3><%= t "devise.invitations.new.header" %></h3>
 
@@ -14,6 +15,7 @@
         <%= f.button :submit, t("devise.invitations.new.submit_button"), class: "btn-spad" %>
       <% end %>
     </div>
+    <% end %>
     <div class="box-inner">
       <% if policy(User).index? %>
       <div class="table-responsive">
