@@ -58,7 +58,8 @@
              <%= link_to "Company", expenses_path(scope: "company"), class: "btn-spad-green" %>
             <% end %>
               <p class="margined-top">Total amount for this period: <strong>€<%= @total_expense %></strong></p>
-            <table class="table margined-top">
+            <div class="table-responsive">
+              <table class="table margined-top">
                 <thead>
                   <tr>
                     <th>Name</th>
@@ -79,6 +80,7 @@
                     <% end %>
                 </tbody>
               </table>
+            </div>
         </div>
         <div class="margined-top padded-bottom"><%= link_to "Export", expenses_path(format: :pdf, scope: params[:scope], month: params[:month], year: params[:year], all: params[:all]), target: '_blank', class: "btn-spad pull-right" %></div>
       </div>

@@ -9,7 +9,8 @@ class UserPolicy < ApplicationPolicy
     end
 
     def resolve
-      user.admin? ? scope.where(company_id: user.company_id) : scope.none
+      # user.admin? ? scope.where(company_id: user.company_id) : scope.none
+      scope.where(company_id: user.company_id)
     end
   end
   def index

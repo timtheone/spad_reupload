@@ -9,80 +9,81 @@
     </div>
     <div class="box-inner">
 
-
-      <table class="table category-table">
-        <thead>
-          <tr>
-            <th>CCN</th>
-            <th>Type</th>
-            <th>Expiry date</th>
-            <th>Cycle's last day</th>
-            <th>Status</th>
-            <% if policy(@credit_cards).activate? %>
-              <th colspan="2" class="text-center">Controls</th>
-            <% else %>
-            <% end %>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @credit_cards.each do |c| %>
-          <tr>
-            <td><%= c.mask %></td>
-            <td><%= c.credit_card_type %></td>
-            <td><%= c.exp_date %></td>
-            <td><%= c.billing_day %></td>
-            <td><%= c.status %></td>
-
-            <% if policy(@credit_cards).activate? %>
-              <% if c.status == "Closed" %>
-                <td></td>
-              <% elsif (c.status != "Active") %>
-                <td><%= link_to "Activate", activate_credit_card_path(c), method: :patch, class: "btn-spad-green" %></td>
+      <div class="table-responsive">
+        <table class="table category-table">
+          <thead>
+            <tr>
+              <th>CCN</th>
+              <th>Type</th>
+              <th>Expiry date</th>
+              <th>Cycle's last day</th>
+              <th>Status</th>
+              <% if policy(@credit_cards).activate? %>
+                <th colspan="2" class="text-center">Controls</th>
               <% else %>
-                <td><%= link_to "Deactivate", deactivate_credit_card_path(c), method: :patch, class: "btn-spad-green" %></td>
+              <% end %>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @credit_cards.each do |c| %>
+            <tr>
+              <td><%= c.mask %></td>
+              <td><%= c.credit_card_type %></td>
+              <td><%= c.exp_date %></td>
+              <td><%= c.billing_day %></td>
+              <td><%= c.status %></td>
+
+              <% if policy(@credit_cards).activate? %>
+                <% if c.status == "Closed" %>
+                  <td></td>
+                <% elsif (c.status != "Active") %>
+                  <td><%= link_to "Activate", activate_credit_card_path(c), method: :patch, class: "btn-spad-green" %></td>
+                <% else %>
+                  <td><%= link_to "Deactivate", deactivate_credit_card_path(c), method: :patch, class: "btn-spad-green" %></td>
+                <% end %>
+
+                <% if c.status == "Closed" %>
+                  <td></td>
+                <% else %>
+                  <td><%= link_to edit_credit_card_path(c), class: "btn-spad-fa" do %>
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    <% end %>
+                  </td>
               <% end %>
 
-              <% if c.status == "Closed" %>
-                <td></td>
-              <% else %>
-                <td><%= link_to edit_credit_card_path(c), class: "btn-spad-fa" do %>
-                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                  <% end %>
-                </td>
-            <% end %>
 
+                <% if (c.status == "Closed") || (c.status == "Active") %>
+                  <td></td>
+                <% else %>
+                  <td><button type="button" class="btn-spad-fa" data-toggle="modal" data-target="#exampleModal<%=c.id%>"><i class="fa fa-times" aria-hidden="true"></i></button></td>
 
-              <% if (c.status == "Closed") || (c.status == "Active") %>
-                <td></td>
-              <% else %>
-                <td><button type="button" class="btn-spad-fa" data-toggle="modal" data-target="#exampleModal<%=c.id%>"><i class="fa fa-times" aria-hidden="true"></i></button></td>
-
-                <div class="modal fade" id="exampleModal<%=c.id%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModal">Confirmation window</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                      <div class="modal-body">
-                        Are you sure you want to close this credit card? You cant open a closed card.
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn-spad-cancel" data-dismiss="modal">Cancel</button>
-                        <%= link_to "Yes, I am sure", close_credit_card_path(c), method: :patch, class: "btn-spad" %>
+                  <div class="modal fade" id="exampleModal<%=c.id%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModal">Confirmation window</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          Are you sure you want to close this credit card? You cant open a closed card.
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn-spad-cancel" data-dismiss="modal">Cancel</button>
+                          <%= link_to "Yes, I am sure", close_credit_card_path(c), method: :patch, class: "btn-spad" %>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
+                <% end %>
               <% end %>
+            </tr>
             <% end %>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>
