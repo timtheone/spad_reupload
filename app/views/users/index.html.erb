@@ -1,78 +1,80 @@
-<div Class="container">
+<div class="container">
+  <div class="row">
+  <div class="box-outter">
+    <div class="box-inner">
+      <h3><%= t "devise.invitations.new.header" %></h3>
 
-  <h2><%= t "devise.invitations.new.header" %></h2>
+      <%= simple_form_for :user, url: user_invitation_path, html: { method: :post} do |f| %>
 
-  <%= simple_form_for :user, url: user_invitation_path, html: { method: :post} do |f| %>
-
-    <% User.invite_key_fields.each do |field| -%>
-      <%= f.input field %>
-    <% end %>
-    <input name="user[company_id]" type="hidden" value="<%= current_user.company_id %>">
-    <input name="user[status]" type="hidden" value="invited">
-    <%= f.button :submit, t("devise.invitations.new.submit_button") %>
-  <% end %>
-  <br>
-
-
-
-
-
-
-
-
-
-
-
-  <% if policy(User).index? %>
-  <div class="table-responsive">
-    <table class="table table-condensed">
-      <tr>
-        <td>
-          <strong>First Name</strong>
-        </td>
-        <td>
-          <strong>Last Name</strong>
-        </td>
-        <td>
-          <strong>Email</strong>
-        </td>
-        <td>
-          <strong>Status</strong>
-        </td>
-        <td>
-          <strong>Role</strong>
-        </td>
-        <td>
-          <strong>Invitation sent</strong>
-        </td>
-        <td>
-          <strong>Actions</strong>
-        </td>
-      </tr>
-
-      <% @users.each do |user| %>
-      <tr>
-        <td><%= user.first_name %></td>
-        <td><%= user.last_name %></td>
-        <td><%= user.email %></td>
-        <td><%= user.status %></td>
-        <td><%= user.role(user) %></td>
-        <td><%= user.invitation_sent_at %></td>
-        <td>
-          <% if policy(user).reinvite? %>
-          <%= link_to 'Re-invite', reinvite_path(user), :class => "btn-medium", method: :post %>
-          <% end %>
-          <% if policy(user).destroy? %>
-          <%= link_to 'Delete', user_path(user),
-          :class => "btn-medium",
-          method: :delete,
-          data: { confirm: "Are you sure?" } %>
-          <% end %>
-        </td>
-      </tr>
+        <% User.invite_key_fields.each do |field| -%>
+          <%= f.input field %>
+        <% end %>
+        <input name="user[company_id]" type="hidden" value="<%= current_user.company_id %>">
+        <input name="user[status]" type="hidden" value="invited">
+        <%= f.button :submit, t("devise.invitations.new.submit_button"), class: "btn-spad" %>
       <% end %>
-    </table>
+    </div>
+    <div class="box-inner">
+      <% if policy(User).index? %>
+      <div class="table-responsive">
+        <table class="table category-table">
+          <thead>
+            <tr>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Email</th>
+              <th>Status</th>
+              <th>Role</th>
+              <% if policy(User).reinvite? %>
+                <th>Invitation sent</th>
+                <th colspan="2" class="text-center">Controls</th>
+              <% end %>
+            </tr>
+          </thead>
+          <% @users.each do |user| %>
+          <tr>
+            <td><%= user.first_name %></td>
+            <td><%= user.last_name %></td>
+            <td><%= user.email %></td>
+            <td><%= user.status %></td>
+            <td><%= user.role(user) %></td>
+              <% if policy(user).reinvite? %>
+              <td><%= user.invitation_sent_at %></td>
+            <td>
+                <%= link_to 'Re-invite', reinvite_path(user), method: :post, class: "btn-spad-green", style: "white-space: nowrap;" %>
+              <% end %>
+            </td>
+              <% if policy(user).destroy? %>
+            <td><button type="button" class="btn-spad-fa" data-toggle="modal" data-target="#exampleModal<%=user.id%>"><i class="fa fa-times" aria-hidden="true"></i></button></td>
+              <% end %>
+          </tr>
+          <% end %>
+        </table>
+        </div>
+      </div>
+      <% end %>
   </div>
-  <% end %>
+  </div>
 </div>
 
+<% @users.each do |user| %>
+<div class="modal fade" id="exampleModal<%=user.id%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModal">Confirmation window</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete this user?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-spad-cancel" data-dismiss="modal">Cancel</button>
+        <%= link_to "Yes, I am sure", user_path(user), method: :delete, class: "btn-spad" %>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>

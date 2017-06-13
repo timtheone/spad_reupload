@@ -6,7 +6,8 @@
     <%= link_to "Add a category", new_category_path, class: "btn-spad" %>
   <% end %></div>
     <div class="box-inner">
-      <table class="table table-responsive category-table">
+    <div class="table-responsive">
+      <table class="table category-table">
           <thead>
             <tr>
               <th>Name</th>
@@ -42,6 +43,7 @@
               <% end %>
           </tbody>
         </table>
+        </div>
       </div>
     </div>
 </div>
