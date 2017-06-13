@@ -45,7 +45,7 @@
   border-bottom: 5px solid transparent;
   position: absolute;
   top: 7px;
-  left: 78px;
+  right: -14px;
   transition: border-left 0.2s;
 }
 
@@ -58,7 +58,7 @@
 #cycle-controls {
   position: absolute;
   right: 100px;
-  top: 81px;
+  top: 82px;
 }
 
 #all-time-cycle-controls {
@@ -66,8 +66,4 @@
   right: 100px;
   top: 120px;
   margin-bottom: 10px
-}
-
-.margined-top {
-  margin-top: 20px
 }
