@@ -40,11 +40,15 @@
             <td><%= user.email %></td>
             <td><%= user.status %></td>
             <td><%= user.role(user) %></td>
-              <% if policy(user).reinvite? %>
-              <td><%= user.invitation_sent_at %></td>
-            <td>
-                <%= link_to 'Re-invite', reinvite_path(user), method: :post, class: "btn-spad-green", style: "white-space: nowrap;" %>
+            <% if policy(user).reinvite? %>
+              <% if user.invitation_sent_at.nil? %>
+                <td><%= user.invitation_sent_at %></td>
+              <% else %>
+                <td><%= user.invitation_sent_at.strftime("%d/%m/%Y") %></td>
               <% end %>
+              <td>
+                <%= link_to 'Re-invite', reinvite_path(user), method: :post, class: "btn-spad-green", style: "white-space: nowrap;" %>
+            <% end %>
             </td>
               <% if policy(user).destroy? %>
             <td><button type="button" class="btn-spad-fa" data-toggle="modal" data-target="#exampleModal<%=user.id%>"><i class="fa fa-times" aria-hidden="true"></i></button></td>

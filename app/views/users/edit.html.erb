@@ -1,8 +1,14 @@
-<%= simple_form_for [@user] do |f| %>
-  <%= f.input :first_name %><br>
-  <%= f.input :last_name %><br>
-  <%= f.input :email %><br>
-  <%= f.input :portrait %>
-  <%= f.input :portrait_cache, as: :hidden %>
-  <%= f.submit "change name", class: "btn btn-primary" %>
-<% end %>
+<div class="container">
+  <div class="box-outter">
+    <div class="box-inner">
+      <%= simple_form_for [@user] do |f| %>
+        <%= f.input :first_name %><br>
+        <%= f.input :last_name %><br>
+        <%= f.input :email %><br>
+        <%= f.input :portrait %>
+        <%= f.input :portrait_cache, as: :hidden %>
+        <%= f.submit "Save changes", class: "btn-spad" %>
+      <% end %>
+    </div>
+  </div>
+</div>
