@@ -82,6 +82,7 @@ class ExpensesController < ApplicationController
     authorize @expense
     if @expense.save
       redirect_to expenses_path
+      flash[:notice] = "Your expense has been successfully added"
     else
       flash[:alert] = "Wrong date or no receipt has been uploaded"
       redirect_to expenses_path
