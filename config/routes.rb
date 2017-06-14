@@ -23,8 +23,10 @@ Rails.application.routes.draw do
 
   resources :expenses, only: [:index, :create]
 
-  resources :users, only: [:create, :new, :index, :show, :edit, :update, :destroy]
+  resources :users, only: [:create, :new, :index, :show, :edit, :update]
   post '/users/:id/reinvite', to: 'users#reinvite', as: 'reinvite'
 
-
+  devise_scope :user do
+    delete '/admin_users/:id', to: 'users/registrations#admin_destroy_user', :as => :admin_destroy_user
+  end
 end

@@ -17,6 +17,9 @@ class UserPolicy < ApplicationPolicy
       user.admin
   end
 
+  def admin_destroy_user?
+    user.admin && (record.company == user.company)
+  end
 
 
   def reinvite?
