@@ -1,16 +1,23 @@
 
 
-<div class="banner" style="background-image: linear-gradient(-225deg, rgba(30,30,30,0.6) 0%, rgba(30,30,30,0.6) 50%), url('<%= cl_image_path 'background_o8xfe0', class: "banner" %>');">
+<div class="banner" style="background-image: linear-gradient(-225deg, rgba(30,30,30,0.6) 0%, rgba(30,30,30,0.6) 50%), url('<%= cl_image_path 'background_o8xfe0', :gravity=>"center", class: "banner" %>');">
 <div class="container">
   <div class="banner-content">
      <h1>Manage shared credit cards expenses</h1>
     <p></p>
     <% if !user_signed_in? %>
-    <%= link_to 'Enroll your company and invite users', new_user_registration_path, class: 'btn-spad-green-homepage', style: "white-space: nowrap;" %>
+    <%= link_to 'Enroll your company', new_user_registration_path, class: 'btn-spad-green-homepage', style: "white-space: nowrap;" %>
     <% else %>
-    <%= link_to 'Click here to access Expenses management', expenses_path, class: 'btn-spad-green-homepage', style: "white-space: nowrap;"  %>
+    <%= link_to 'Access expenses management', expenses_path, class: 'btn-spad-green-homepage', style: "white-space: nowrap;"  %>
     <% end %>
 </div>
 </div>
+</div>
+<div class="footer">
+<ul style="list-style-type: none; padding-top: 33px;">
+  <li><a href="">About</a></li>
+  <li><a href="">Contact</a></li>
+  <li><a href="">Terms and privacy</a></li>
+</ul>
 </div>
 
