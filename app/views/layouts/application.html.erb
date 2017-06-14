@@ -3,6 +3,11 @@
   <head>
     <%= favicon_link_tag %>
     <title>SPAD.rocks</title>
+    <% if yield(:title).blank? %>
+      <title>SPAD.rocks</title>
+    <% else %>
+      <title><%= yield(:title) %></title>
+    <% end %>
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1">
