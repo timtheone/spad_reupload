@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20170614091402) do
   create_table "expenses", force: :cascade do |t|
     t.integer  "user_id"
     t.date     "date"
+    t.integer  "amount"
     t.integer  "cycle"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false

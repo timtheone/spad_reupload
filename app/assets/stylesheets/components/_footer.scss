@@ -1,17 +1,14 @@
 .footer {
-  background-color: #14BDC0;
-  height: 21vh;
+  background-color: #F1F1F1;
+  height: 15vh;
   font-weight: 200;
 }
 
-.footer > ul > li:hover {
-  color:white;
-}
 .footer a {
-  color: rgba(255,255,255, 0.75);;
+  color: #333333;;
 }
 
 .footer a:hover {
-  color: white;
+  color: #25CED1;
   text-decoration: none;
 }
