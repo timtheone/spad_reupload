@@ -1,6 +1,6 @@
 <% title "Expenses" %>
 <div class="container">
-<h3 class="text-center">Expenses</h3>
+<h4>Expenses</h4>
   <div class="row">
     <div class="col-sm-4">
       <div class="box-outter">
@@ -82,8 +82,8 @@
                 </tbody>
               </table>
             </div>
+        <div class="padded-bottom"><%= link_to "Export", expenses_path(format: :pdf, scope: params[:scope], month: params[:month], year: params[:year], all: params[:all]), target: '_blank', class: "btn-spad pull-right" %></div>
         </div>
-        <div class="margined-top padded-bottom"><%= link_to "Export", expenses_path(format: :pdf, scope: params[:scope], month: params[:month], year: params[:year], all: params[:all]), target: '_blank', class: "btn-spad pull-right" %></div>
       </div>
     </div>
   </div>
