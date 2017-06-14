@@ -1,5 +1,11 @@
-<h2>Change your password</h2>
+<div class="container">
+  <div class="outter-box">
+    <div class="inner-box">
+      <h2><%= t 'devise.invitations.edit.header' %></h2>
 
+
+<h2>Change your password</h2>
+<% byebug %>
 <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
   <%= f.error_notification %>
 

@@ -7,7 +7,9 @@ Role :  <%= @user.role(@user) %><br>
 <%= cl_image_tag @user.portrait, height: 100, crop: :fill %>
 <br>
 
-<%= link_to 'Change Password', edit_user_password_path %><br>
+
+<%= link_to 'Change Password', edit_user_registration_path %><br>
+<%= link_to 'Change Password', edit_user_password_path(@user) %><br>
 <%= link_to 'Change Name', edit_user_path(@user) %><br>
 
 
