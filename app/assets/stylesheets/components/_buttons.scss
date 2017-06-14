@@ -74,3 +74,30 @@
   background-color: #25CED1;
   border: 2px solid #25CED1;
 }
+
+.btn-spad-green-homepage {
+  background-color: #14bdc0;
+  border: 2px solid #14bdc0;
+  border-radius: 8px;
+  transition: background-color 0.2s;
+  transition: color 0.2s;
+  transition: border 0.2s;
+  color: white;
+  padding: 5px;
+  text-decoration: none;
+}
+
+.btn-spad-green-homepage:hover {
+  text-decoration: none;
+  color: white;
+  background-color: #25CED1;
+  border: 2px solid #25CED1;
+  box-shadow: 0 2px 11px 0 rgba(96,114,107,0.50);
+}
+
+#position-edit-profile {
+  position: absolute;
+  top: 188;
+  right: 21;
+}
+
