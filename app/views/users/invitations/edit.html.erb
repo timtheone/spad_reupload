@@ -1,18 +1,20 @@
 <div class="container">
-  <div class="outter-box">
-    <div class="inner-box">
-      <h2><%= t 'devise.invitations.edit.header' %></h2>
-
-      <%= simple_form_for resource, as: resource_name, url: invitation_path(resource_name), html: { method: :put } do |f| %>
-        <%= devise_error_messages! %>
-        <%= f.hidden_field :invitation_token %>
-        <%= f.hidden_field :status, value: "accepted" %>
-        <%= f.input :first_name %>
-        <%= f.input :last_name %>
-        <%= f.input :password %>
-        <%= f.input :password_confirmation %>
-        <%= f.button :submit, t("devise.invitations.edit.submit_button") %>
-      <% end %>
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+      <div class="box-outter">
+        <div class="box-inner">
+          <h3 class="text-center">Finish setting up your profile</h3>
+          <%= simple_form_for resource, as: resource_name, url: invitation_path(resource_name), html: { method: :put } do |f| %>
+            <%= f.hidden_field :invitation_token %>
+            <%= f.hidden_field :status, value: "accepted" %>
+            <%= f.input :first_name %>
+            <%= f.input :last_name %>
+            <%= f.input :password %>
+            <%= f.input :password_confirmation %>
+            <%= f.button :submit, t("devise.invitations.edit.submit_button"), class: "btn-spad" %>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
 </div>

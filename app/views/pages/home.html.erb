@@ -6,9 +6,9 @@
      <h1>Manage shared credit cards expenses</h1>
     <p></p>
     <% if !user_signed_in? %>
-    <%= link_to 'Enroll your company and invite users', new_user_registration_path, class: 'btn btn-primary btn-lg' %>
+    <%= link_to 'Enroll your company and invite users', new_user_registration_path, class: 'btn-spad-green-homepage' %>
     <% else %>
-    <%= link_to 'Click here to access Expenses management', expenses_path, class: 'btn btn-primary btn-lg'  %>
+    <%= link_to 'Click here to access Expenses management', expenses_path, class: 'btn-spad-green-homepage'  %>
     <% end %>
 </div>
 </div>
