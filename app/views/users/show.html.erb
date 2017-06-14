@@ -9,8 +9,16 @@
       <%= cl_image_tag @user.portrait, crop: :fill, class: "avatar-large-profile" %>
       <br>
 
-      <p class="margined-bottom"><%= link_to 'Edit profile', edit_user_path(@user), class: "btn-spad-cancel", style: "white-space: nowrap;" %></p>
-      <p><%= link_to 'Change Password', edit_user_registration_path, class: "btn-spad-green", style: "white-space: nowrap;" %></p>
+
+      <p class="margined-bottom">
+        <div class="form-actions">
+      <%= link_to 'Edit profile', edit_user_path(@user), class: "btn-spad-green", style: "white-space: nowrap;" %>
+      <%= link_to 'Change Password', edit_user_registration_path, class: "btn-spad-green", style: "white-space: nowrap;" %>
+
+        </div>
+      </p>
     </div>
   </div>
 </div>
+
+

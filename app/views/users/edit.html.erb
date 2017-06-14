@@ -8,8 +8,17 @@
          <%= f.input :email, required: true, autofocus: true %>
         <%= f.input :portrait %>
         <%= f.input :portrait_cache, as: :hidden %>
-        <%= f.submit "Save changes", class: "btn-spad" %>
+        <div class="form-actions">
+          <%= f.submit "Save changes", class: "btn-spad" %>
+          <%= link_to "Cancel", :back, class: "btn-spad-cancel" %>
+    </div>
+
+
+
       <% end %>
+
     </div>
   </div>
 </div>
+
+
