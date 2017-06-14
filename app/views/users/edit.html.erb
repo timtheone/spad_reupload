@@ -5,7 +5,7 @@
       <%= simple_form_for [@user] do |f| %>
         <%= f.input :first_name %><br>
         <%= f.input :last_name %><br>
-        <%= f.input :email %><br>
+         <%= f.input :email, required: true, autofocus: true %>
         <%= f.input :portrait %>
         <%= f.input :portrait_cache, as: :hidden %>
         <%= f.submit "Save changes", class: "btn-spad" %>

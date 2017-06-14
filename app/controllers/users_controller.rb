@@ -20,6 +20,8 @@ end
 
   def reinvite
     @user = User.find(params[:id])
+    @user.deleted_at = nil
+    @user.status = 'invited'
     @user.invite!(current_user)
     redirect_to users_path
     authorize @user
@@ -40,12 +42,12 @@ end
   end
 
 
-  def destroy
-    set_user
-    @user.destroy
-    redirect_to users_path
-    authorize @user
-  end
+  # def destroy
+  #   set_user
+  #   @user.destroy
+  #   redirect_to users_path
+  #   authorize @user
+  # end
 
   def set_user
      @user = User.find(params[:id])

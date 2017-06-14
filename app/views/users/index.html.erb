@@ -27,6 +27,8 @@
               <th>Last Name</th>
               <th>Email</th>
               <th>Status</th>
+               <th>havs exp</th>
+                <th>deleted</th>
               <th>Role</th>
               <% if policy(User).reinvite? %>
                 <th>Invitation sent</th>
@@ -40,6 +42,8 @@
             <td><%= user.last_name %></td>
             <td><%= user.email %></td>
             <td><%= user.status %></td>
+               <td><%= user.has_expenses? %></td>
+                <td><%= user.deleted_at %></td>
             <td><%= user.role(user) %></td>
             <% if policy(user).reinvite? %>
               <% if user.invitation_sent_at.nil? %>
@@ -79,7 +83,8 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn-spad-cancel" data-dismiss="modal">Cancel</button>
-        <%= link_to "Yes, I am sure", user_path(user), method: :delete, class: "btn-spad" %>
+        <%= link_to "Yes, I am sure", admin_destroy_user_path(user), method: :delete, class: "btn-spad" %>
+
       </div>
     </div>
   </div>

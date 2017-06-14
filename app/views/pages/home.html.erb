@@ -3,7 +3,15 @@
 <div class="container">
   <div class="banner-content">
      <h1>Manage shared credit cards expenses</h1>
-    <p></p>
+    <p>
+      <ul>
+          <li>Create your company</li>
+          <li>Invite employees</li>
+          <li>They easily save their expenses on-line</li>
+          <li>Every month, gather all receipts in a single clic !</li>
+      </ul>
+
+    </p>
     <% if !user_signed_in? %>
     <%= link_to 'Enroll your company', new_user_registration_path, class: 'btn-spad-green-homepage', style: "white-space: nowrap;" %>
     <% else %>

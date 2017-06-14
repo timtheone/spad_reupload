@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170613094956) do
+ActiveRecord::Schema.define(version: 20170614091402) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,7 +46,6 @@ ActiveRecord::Schema.define(version: 20170613094956) do
   create_table "expenses", force: :cascade do |t|
     t.integer  "user_id"
     t.date     "date"
-    t.integer  "amount"
     t.integer  "cycle"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
@@ -89,6 +88,7 @@ ActiveRecord::Schema.define(version: 20170613094956) do
     t.integer  "invited_by_id"
     t.integer  "invitations_count",      default: 0
     t.string   "portrait"
+    t.datetime "deleted_at"
     t.index ["company_id"], name: "index_users_on_company_id", using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true, using: :btree

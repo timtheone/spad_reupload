@@ -2,6 +2,8 @@ class Users::InvitationsController < Devise::InvitationsController
 
  before_filter :configure_permitted_parameters, if: :devise_controller?
 
+
+
   def after_invite_path_for(resource)
     users_path
   end
@@ -16,6 +18,8 @@ class Users::InvitationsController < Devise::InvitationsController
     #super(resource)
     expenses_path
   end
+
+
   private
 
    def invite_params
