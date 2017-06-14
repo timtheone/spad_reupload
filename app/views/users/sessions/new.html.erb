@@ -13,10 +13,14 @@
             </div>
 
             <div class="form-actions">
-              <%= f.button :submit, "Log in", class: "btn-spad margined-bottom" %>
+              <%= f.button :submit, "Log in", class: "btn btn-spad" %>
+              <%= link_to "Cancel", root_path, class: "btn btn-spad-cancel" %>
             </div>
           <% end %>
+          <br>
+          <p>
           <%= link_to "Forgot your password?", new_password_path(resource_name), class: "btn-spad-green", style: "white-space: nowrap;" %>
+          </p>
         </div>
       </div>
     </div>

@@ -4,7 +4,7 @@
     <div class="col-sm-8 col-sm-offset-2">
       <div class="box-outter">
         <div class="box-inner">
-          <h2>Log in</h2>
+          <h2>Logee in</h2>
 
           <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
             <div class="form-inputs">
@@ -14,7 +14,8 @@
             </div>
 
             <div class="form-actions">
-              <%= f.button :submit, "Log in" %>
+              <%= f.button :submit, "Log in", class: "btn btn-spad" %>
+               <%= link_to "Cancel", :back, class: "btn btn-spad-cancel" %>
             </div>
           <% end %>
 
@@ -24,3 +25,5 @@
     </div>
   </div>
 </div>
+
+
