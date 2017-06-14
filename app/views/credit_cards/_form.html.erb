@@ -5,15 +5,19 @@
       <div class="box-outter">
         <div class="box-inner">
           <%= simple_form_for @credit_card do |f| %>
-            <%= f.input :number, input_html: { value: '' } %>
-            <%= f.input :credit_card_type %>
-            <%= f.input :exp_date, label: "Expiry date (mm/yy)" %>
-            <%= f.input :billing_day %>
-            <%= f.input :status, input_html: { value: 'Not active' }, as: :hidden %>
-            <%= f.submit class: "btn-spad" %>
-          <% end %>
-        </div>
-      </div>
-    </div>
-  </div>
+          <%= f.input :number, input_html: { value: '' } %>
+          <%= f.input :credit_card_type %>
+          <%= f.input :exp_date, label: "Expiry date (mm/yy)" %>
+          <%= f.input :billing_day %>
+          <%= f.input :status, input_html: { value: 'Not active' }, as: :hidden %>
+          <div class="form-actions">
+           <%= f.submit class: "btn-spad" %>
+           <%= link_to "Cancel", :back, class: "btn-spad-cancel" %>
+         </div>
+
+         <% end %>
+       </div>
+     </div>
+   </div>
+ </div>
 </div>

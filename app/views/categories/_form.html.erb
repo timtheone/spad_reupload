@@ -6,10 +6,16 @@
           <%= simple_form_for @category do |f| %>
             <%= f.input :name, label: "Category name" %>
             <%= f.input :status, input_html: { value: 'Active' }, as: :hidden %>
-            <%= f.submit class: "btn-spad" %>
+
+            <div class="form-actions">
+             <%= f.submit class: "btn-spad" %>
+             <%= link_to "Cancel", :back, class: "btn-spad-cancel" %>
+           </div>
+
           <% end %>
         </div>
       </div>
     </div>
   </div>
 </div>
+

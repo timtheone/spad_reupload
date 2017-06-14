@@ -1,70 +1,115 @@
 <% title "Team" %>
 <div class="container">
   <div class="row">
-  <div class="box-outter">
-  <% if policy(User).reinvite? %>
-    <div class="box-inner">
-      <h3><%= t "devise.invitations.new.header" %></h3>
+    <div class="box-outter">
+      <% if policy(User).reinvite? %>
+      <div class="box-inner">
+        <h3><%= t "devise.invitations.new.header" %></h3>
 
-      <%= simple_form_for :user, url: user_invitation_path, html: { method: :post} do |f| %>
+        <%= simple_form_for :user, url: user_invitation_path, html: { method: :post} do |f| %>
 
         <% User.invite_key_fields.each do |field| -%>
-          <%= f.input field %>
+        <%= f.input field %>
         <% end %>
         <input name="user[company_id]" type="hidden" value="<%= current_user.company_id %>">
         <input name="user[status]" type="hidden" value="invited">
         <%= f.button :submit, t("devise.invitations.new.submit_button"), class: "btn-spad" %>
+        <% end %>
+      </div>
       <% end %>
-    </div>
-    <% end %>
-    <div class="box-inner">
-      <% if policy(User).index? %>
-      <div class="table-responsive">
-        <table class="table category-table">
-          <thead>
-            <tr>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Email</th>
-              <th>Status</th>
-               <th>havs exp</th>
-                <th>deleted</th>
-              <th>Role</th>
-              <% if policy(User).reinvite? %>
+      <div class="box-inner">
+        <% if policy(User).index? %>
+<h4>Active users</h4>
+        <div class="table-responsive">
+          <table class="table category-table">
+            <thead>
+              <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Status</th>
+                <th>Role</th>
+                <% if policy(User).reinvite? %>
                 <th>Invitation sent</th>
                 <th colspan="2" class="text-center">Controls</th>
-              <% end %>
-            </tr>
-          </thead>
-          <% @users.each do |user| %>
-          <tr>
-            <td><%= user.first_name %></td>
-            <td><%= user.last_name %></td>
-            <td><%= user.email %></td>
-            <td><%= user.status %></td>
-               <td><%= user.has_expenses? %></td>
-                <td><%= user.deleted_at %></td>
-            <td><%= user.role(user) %></td>
-            <% if policy(user).reinvite? %>
+                <% end %>
+              </tr>
+            </thead>
+            <% @users.each do |user| %>
+            <% if user.status != 'deleted' %>
+            <tr>
+              <td><%= user.first_name %></td>
+              <td><%= user.last_name %></td>
+              <td><%= user.email %></td>
+              <td><%= user.status %></td>
+              <td><%= user.role(user) %></td>
+              <% if policy(user).reinvite? %>
               <% if user.invitation_sent_at.nil? %>
-                <td><%= user.invitation_sent_at %></td>
+              <td><%= user.invitation_sent_at %></td>
               <% else %>
-                <td><%= user.invitation_sent_at.strftime("%d/%m/%Y") %></td>
+              <td><%= user.invitation_sent_at.strftime("%d/%m/%Y") %></td>
               <% end %>
               <td>
                 <%= link_to 'Re-invite', reinvite_path(user), method: :post, class: "btn-spad-green", style: "white-space: nowrap;" %>
-            <% end %>
-            </td>
+                <% end %>
+              </td>
               <% if policy(user).destroy? %>
-            <td><button type="button" class="btn-spad-fa" data-toggle="modal" data-target="#exampleModal<%=user.id%>"><i class="fa fa-times" aria-hidden="true"></i></button></td>
+              <td><button type="button" class="btn-spad-fa" data-toggle="modal" data-target="#exampleModal<%=user.id%>"><i class="fa fa-times" aria-hidden="true"></i></button></td>
               <% end %>
-          </tr>
-          <% end %>
-        </table>
+            </tr>
+            <% end %>
+            <% end %>
+          </table>
         </div>
+<h4>Deleted users</h4>
+       <div class="table-responsive">
+          <table class="table category-table">
+            <thead>
+              <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Status</th>
+                <th>Role</th>
+                <% if policy(User).reinvite? %>
+                <th>Invitation sent</th>
+                <th colspan="2" class="text-center">Controls</th>
+                <% end %>
+              </tr>
+            </thead>
+            <% @users.each do |user| %>
+                  <% if user.status = 'deleted' %>
+            <tr>
+              <td><%= user.first_name %></td>
+              <td><%= user.last_name %></td>
+              <td><%= user.email %></td>
+              <td><%= user.status %></td>
+              <td><%= user.role(user) %></td>
+              <% if policy(user).reinvite? %>
+              <% if user.invitation_sent_at.nil? %>
+              <td><%= user.invitation_sent_at %></td>
+              <% else %>
+              <td><%= user.invitation_sent_at.strftime("%d/%m/%Y") %></td>
+              <% end %>
+              <td>
+                <%= link_to 'Re-invite', reinvite_path(user), method: :post, class: "btn-spad-green", style: "white-space: nowrap;" %>
+                <% end %>
+              </td>
+              <% if policy(user).destroy? %>
+              <td><button type="button" class="btn-spad-fa" data-toggle="modal" data-target="#exampleModal<%=user.id%>"><i class="fa fa-times" aria-hidden="true"></i></button></td>
+              <% end %>
+            </tr>
+            <% end %>
+            <% end %>
+          </table>
+        </div>
+
+
+
+        <% end %>
       </div>
-      <% end %>
-  </div>
+
+    </div>
   </div>
 </div>
 
@@ -75,7 +120,7 @@
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModal">Confirmation window</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
+          <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
