@@ -30,7 +30,8 @@ user1 = User.new(first_name: "Tim",
                  company_id: 1,
                  password: "password",
                  password_confirmation: "password",
-                 admin: true)
+                 admin: true,
+                 status: "accepted")
 user1.remote_portrait_url = user_url1
 user1.save!
 
@@ -41,7 +42,8 @@ user3 = User.new(first_name: "Nicolas",
                  email: "nicolas.peltier@spad.rocks",
                  password: "password",
                  password_confirmation: "password",
-                 admin: true)
+                 admin: true,
+                 status: "accepted")
 user3.remote_portrait_url = user_url3
 user3.save!
 
@@ -65,7 +67,8 @@ user_seed = [
   email: "john.dawson@spad.rocks",
   password: "password",
   password_confirmation: "password",
-  admin: false
+  admin: false,
+  status: "accepted"
   },
 
   # {
@@ -85,7 +88,8 @@ user_seed = [
   email: "peter.drucker@spad.rocks",
   password: "password",
   password_confirmation: "password",
-  admin: false
+  admin: false,
+  status: "accepted"
   },
   {
   first_name: "Peter",
@@ -94,7 +98,8 @@ user_seed = [
   email: "peter.thiele@spad.rocks",
   password: "password",
   password_confirmation: "password",
-  admin: false
+  admin: false,
+  status: "accepted"
   },
   {
   first_name: "David",
@@ -103,7 +108,8 @@ user_seed = [
   email: "david.allen@spad.rocks",
   password: "password",
   password_confirmation: "password",
-  admin: false
+  admin: false,
+  status: "accepted"
   }
 ]
 

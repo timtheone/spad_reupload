@@ -78,7 +78,7 @@
               </tr>
             </thead>
             <% @users.each do |user| %>
-                  <% if user.status = 'deleted' %>
+            <% if user.status == 'deleted' %>
             <tr>
               <td><%= user.first_name %></td>
               <td><%= user.last_name %></td>
