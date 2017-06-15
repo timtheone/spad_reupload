@@ -12,6 +12,10 @@ class Expense < ApplicationRecord
     end
   end
 
+  def pdf?
+    receipt.url.include?(".pdf")
+  end
+
   # Expense.for_credit_card_by_cycle(args)
   scope :for_credit_card_by_cycle, -> (credit_card_id, cycle, year) do
     credit_card = CreditCard.find(credit_card_id)
