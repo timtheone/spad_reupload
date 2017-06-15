@@ -109,23 +109,28 @@ credit_card_seed = [
 category_seed = [
   {
   name: "Restaurant",
-  company_id: 1
+  company_id: 1,
+  status: "Active"
   },
   {
   name: "Software",
-  company_id: 1
+  company_id: 1,
+  status: "Active"
   },
   {
   name: "Travels",
-  company_id: 1
+  company_id: 1,
+  status: "Active"
   },
   {
   name: "Fuel",
-  company_id: 1
+  company_id: 1,
+  status: "Active"
   },
   {
   name: "Hotel",
-  company_id: 1
+  company_id: 1,
+  status: "Active"
   }
 ]
 

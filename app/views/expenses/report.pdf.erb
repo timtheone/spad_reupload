@@ -6,6 +6,11 @@
   <%= wicked_pdf_javascript_include_tag "number_pages" %>
   <title>Expenses</title>
 </head>
+<style>
+  body {
+    background-color: white;
+  }
+</style>
 <body>
   <h3>Company: <%= current_user.company.name %></h3>
   <% if params[:year].present? %>
@@ -48,6 +53,7 @@
   <p>Receipt for ID: <%= index += 1 %></p>
   <p><%= c.user.first_name %> <%= c.user.last_name %> | Date: <%= c.date %> | Amount: <%= humanized_money_with_symbol(c.amount) %></p>
   <p>Details: <%= c.details %></p>
-  <%= cl_image_tag c.receipt, height: 800, width: 700, format: :jpg %>
+  <%= cl_image_tag c.receipt, height: 800, width: 700, format: :jpg, angle: 'auto' %>
   <div class="page-break"></div>
 <% end %>
+
