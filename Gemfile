@@ -23,6 +23,7 @@ gem 'carrierwave', '~> 0.11.2'
 gem 'money-rails'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
+gem 'mini_magick'
 
 group :development, :test do
   gem 'binding_of_caller'
