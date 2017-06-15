@@ -50,7 +50,7 @@ class CategoriesController < ApplicationController
     @category = Category.find(params[:id])
     authorize @category
     @category.update(status: "Not active")
-    flash[:alert] = "Credit has been deactivated"
+    flash[:alert] = "Category has been deactivated"
     redirect_to categories_path
   end
 

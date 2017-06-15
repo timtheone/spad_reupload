@@ -5,7 +5,7 @@
       <div class="box-outter">
         <div class="box-inner">
           <%= simple_form_for @credit_card do |f| %>
-          <%= f.input :number, input_html: { value: '' } %>
+          <%= f.input :number %>
           <%= f.input :credit_card_type %>
           <%= f.input :exp_date, label: "Expiry date (mm/yy)" %>
           <%= f.input :billing_day %>
