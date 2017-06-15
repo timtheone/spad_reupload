@@ -23,7 +23,7 @@ class Expense < ApplicationRecord
       cycle_beginning_date = Date.new(year, cycle - 1, credit_card.billing_day)
       cycle_end_date = Date.new(year, cycle, credit_card.billing_day - 1)
       cycle_time_range = cycle_beginning_date..cycle_end_date
-    elsif cycle = 1
+    elsif cycle == 1
       cycle_beginning_date = Date.new(year - 1, cycle = 12, credit_card.billing_day)
       cycle_end_date = Date.new(year, cycle = 1, credit_card.billing_day - 1)
       cycle_time_range = cycle_beginning_date..cycle_end_date
