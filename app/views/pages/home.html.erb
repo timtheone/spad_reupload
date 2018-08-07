@@ -2,21 +2,22 @@
 <div class="banner" style="background-image: linear-gradient(-225deg, rgba(30,30,30,0.6) 0%, rgba(30,30,30,0.6) 50%), url('<%= cl_image_path 'background_o8xfe0', :gravity=>"center", class: "banner" %>');">
 <div class="container">
   <div class="banner-content">
-     <h1>Manage shared credit cards expenses</h1>
+     <h1>Bring authentic purpose at the heart of your company</h1>
     <p>
       <ul style="list-style-type: none; font-weight: lighter;">
-          <li>Enroll your company on SPAD.rocks</li>
-          <li>Invite employees</li>
-          <li>They easily save their expenses online</li>
-          <li>Every month, gather all receipts in a single click !</li>
+          <li>SPAD.rocks helps your company becoming more purposeful</li>
+          <li>Engage employees</li>
+          <li>Get your company ready for tomorrow's challenges</li>
+          <li>Fullfill your employees deepest aspirations</li>
       </ul>
 
     </p>
-    <% if !user_signed_in? %>
-    <%= link_to 'Enroll your company', new_user_registration_path, class: 'btn-spad-green-homepage', style: "white-space: nowrap;" %>
-    <% else %>
-    <%= link_to 'Access expenses management', expenses_path, class: 'btn-spad-green-homepage', style: "white-space: nowrap;"  %>
-    <% end %>
+
+<!--  <% if !user_signed_in? %>
+<%= link_to 'Enroll your company', new_user_registration_path, class: 'btn-spad-green-homepage', style: "white-space: nowrap;" %>
+ <% else %>
+   <%= link_to 'Access expenses management', expenses_path, class: 'btn-spad-green-homepage', style: "white-space: nowrap;"  %>   <% end %>
+ -->
 </div>
 </div>
 </div>
